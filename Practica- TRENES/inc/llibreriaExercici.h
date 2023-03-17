@@ -4,7 +4,7 @@
 #include <stdbool.h>
 
 #define MAXVECTOR 5
-#define MAXCADENA 100
+#define MAXCADENA 40
 #define MAXESTACIO 40
 
 typedef struct
@@ -35,6 +35,9 @@ enum OPCIOMENU
 void altaEstacio (int *, ESTACIO []);
 void mostraEstacions(int *,ESTACIO []);
 bool validarNomE (char [], ESTACIO [], int *);
+bool validarCoords(int , int , ESTACIO [], int *);
+
+
 
 
 

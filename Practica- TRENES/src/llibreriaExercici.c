@@ -131,25 +131,46 @@
 void altaEstacio(int *index, ESTACIO novaEstacio[MAXESTACIO])
 {
     char nomEstacio[MAXESTACIO];
-    bool existeix = false;
+    int xCoord;
+    int yCoord;
+    bool existeixNom = false;
+    bool existeixCoords = false;
+
     if (*index == 40)
     {
         printf("\nNo hi ha més espai per afegir més estacions\n");
     }
+
     else
     {
+        // Introduir i validar nom
         printf("Introdueix el nom de l'estació:");
         // entrarCadena(novaEstacio[*index].nom, sizeof(novaEstacio[*index].nom));
         entrarCadena(nomEstacio, sizeof(novaEstacio[*index].nom));
         if (*index > 0)
-            existeix = validarNomE(nomEstacio, novaEstacio, index);
+            existeixNom = validarNomE(nomEstacio, novaEstacio, index);
 
-            // Coloquem primer la condicio "existeix" ja que així l'hi dona prioritat ja que es repetira més que index == 0.
-        if (*index == 0 || existeix == false)
+        // ----------------------------------------------------------------------------
+
+        // Introduir i validar coord X
+
+        printf("Introdueix la Coordenada X: (1..80)");
+        xCoord = demanaNumeroEntreDosValors(1, 80);
+        printf("Introdueix la Coordenada Y: (1..30)");
+        yCoord = demanaNumeroEntreDosValors(1, 30);
+
+        if (*index > 0)
+            existeixCoords = validarCoords(xCoord, yCoord, novaEstacio, index);
+
+        // Si es compleixen totes les regles, s'introdueix l'informació a l'estructura del element del vector real.
+        // Coloquem primer la condicio "existeix" ja que així l'hi dona prioritat ja que es repetira més que index == 0.
+        if (existeixNom == false && existeixCoords == false || *index == 0)
         {
             strcpy(novaEstacio[*index].nom, nomEstacio);
+            novaEstacio[*index].coords.x = xCoord;
+            novaEstacio[*index].coords.y = yCoord;
+            *index = *index + 1;
         }
-        *index = *index + 1;
     }
 }
 
@@ -164,13 +185,27 @@ bool validarNomE(char consulta[MAXESTACIO], ESTACIO ref[MAXESTACIO], int *qtt)
             printf("\nAquesta estacio ja esta donada d'alta\n");
             res = true;
         }
-        else
-        {
-            printf("Dif");
-        }
-
-        return res;
     }
+
+    return res;
+}
+
+bool validarCoords(int Coord1, int Coord2, ESTACIO ref[MAXESTACIO], int *qtt)
+{
+    bool res = false;
+
+    for (int i = 0; i < *qtt; i++)
+    {
+        if (Coord1 == ref[i].coords.x)
+        {
+            if (Coord2 == ref[i].coords.y)
+            {
+                printf("\nNo es poden posar dues estacions en la mateixa coordenada\n");
+                res = true;
+            }
+        }
+    }
+    return res;
 }
 
 void mostraEstacions(int *qtt, ESTACIO estacions[MAXESTACIO])
