@@ -210,8 +210,12 @@ bool validarCoords(int Coord1, int Coord2, ESTACIO ref[MAXESTACIO], int *qtt)
 
 void mostraEstacions(int *qtt, ESTACIO estacions[MAXESTACIO])
 {
+    printf("ESTACIONS:\n");
+    printf("NOM\t\tCOORDENADES\n");
     for (int i = 0; i < *qtt; i++)
     {
-        printf("%s\n\n", estacions[i].nom);
+        printf("%s\t\t(%d-%d)\n", estacions[i].nom,estacions[i].coords.x,estacions[i].coords.y);
     }
 }
+
+
