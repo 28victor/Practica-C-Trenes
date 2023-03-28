@@ -7,6 +7,7 @@
 #include <windows.h>
 #include "llibreriaPropia.h"
 #include "llibreriaExercici.h"
+#include <math.h>
 
 int main()
 {
@@ -17,29 +18,53 @@ int main()
 	enum OPCIOMENU opcio;
 
 	ESTACIO est[MAXESTACIO];
-	int maxEstacions=0;
+	RUTA rut[MAXESTACIO];
+	int qttEstacions = 0;
+	int qttRutas = 0;
 
 	do
 	{
 		pintaMenu();
-		printf("\n\nIntrodueix quina opcio vols? [1..%d]\n",SORTIR);
-		opcio=demanaNumeroEntreDosValors(1,SORTIR);
-	
-		// printf("\nL'opcio %d es: ",opcio);
+		printf("\n\nIntrodueix quina opcio vols? [1..%d] ", SORTIR);
+		opcio = demanaNumeroEntreDosValors(1, SORTIR);
+
 		switch (opcio)
 		{
-			case SORTIR: printf("Adeu");break;
-			case ALTAESTACIO: altaEstacio(&maxEstacions, est);break;
-			case MOSTRAESTACIONS: mostraEstacions(&maxEstacions, est);break;
-			case INSERIRRUTA: printf("inserir ruta");break;
-			case MOSTRARUTA: printf("mostrar ruta");break;
-			case MOSTRARUTESESTACIO: printf("Mostrar rutes estacion");break;
-			case KMENTREESTACIONS: printf("KM entre estacions");break;
-			case MOSTRARGRAFIC: printf("Mostrar grafic rutes");break;
+		case SORTIR:
+			printf("Bye!");
+			break;
+		case ALTAESTACIO:
+			altaEstacio(&qttEstacions, est);
+			premCont();
+			break;
+		case MOSTRAESTACIONS:
+			mostraEstacions(qttEstacions, est);
+			premCont();
+			break;
+		case INSERIRRUTA:
+			inserirRuta(est, rut, qttEstacions, &qttRutas);
+			premCont();
+			break;
+		case MOSTRARUTA:
+			mostrarRutas(qttRutas, rut, est);
+			premCont();
+			break;
+		case MOSTRARUTESESTACIO:
+			mostrarRutas(qttRutas, rut, est);
+			mostrarRutaEspecifica(rut, qttRutas, est, qttEstacions);
+			premCont();
+			break;
+		case KMENTREESTACIONS:
+			mostrarRutas(qttRutas, rut, est);
+			calculaDistanciaRutes(est, rut, qttRutas);
+			premCont();
+			break;
+		// case MOSTRARGRAFIC:
+		// 	printf("Mostrar grafic rutes");
+		// 	break;
 		}
 		printf("\n");
-	}while (opcio!=SORTIR);
-
+	} while (opcio != SORTIR);
 
 	acabament();
 	return 0;

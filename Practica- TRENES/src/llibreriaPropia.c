@@ -62,7 +62,7 @@ char demanarCaracter()
 int demanaNumero(void)
 {
     int num;
-    scanf("%d",&num);
+    scanf("%d", &num);
     return num;
 }
 void intercanviVariables(int *num1, int *num2)
@@ -75,7 +75,7 @@ float calculaMitja(int v[], int qttE, bool *ok)
 {
     (*ok) = true;
     int suma = 0;
-    float mitja=-1;
+    float mitja = -1;
 
     if (qttE > 0)
     {
@@ -87,70 +87,77 @@ float calculaMitja(int v[], int qttE, bool *ok)
     }
     else
     {
-        (*ok)=false;
+        (*ok) = false;
     }
     return mitja;
 }
-void mostraContingut(int v[],int qttE)
+void mostraContingut(int v[], int qttE)
 {
-    if (qttE==0) printf("\nVector buit");
-   else
-{
-    for (int i = 0; i < qttE; i++)
+    if (qttE == 0)
+        printf("\nVector buit");
+    else
     {
-        printf("\nv[%02d]:%02d", i, v[i]);
+        for (int i = 0; i < qttE; i++)
+        {
+            printf("\nv[%02d]:%02d", i, v[i]);
+        }
     }
 }
-}
-bool cerca(int v[],int qttE,int numCerca)
+bool cerca(int v[], int qttE, int numCerca)
 {
-    bool trobat=false;
-    int i=0;
+    bool trobat = false;
+    int i = 0;
 
-    while (i<qttE && trobat==false)
+    while (i < qttE && trobat == false)
     {
-        if (v[i]==numCerca) trobat=true;
-        else i++;
+        if (v[i] == numCerca)
+            trobat = true;
+        else
+            i++;
     }
     return trobat;
 }
 
-bool cercaSentilla(int v[],int qttE)
+bool cercaSentilla(int v[], int qttE)
 {
-    //juga amb tenir en v[qttE] el valor que estem buscant
-    bool trobat=true;
-    int i=0;
-    while (v[i]!=v[qttE]) i++;
-    if (i==qttE) trobat=false;
-    
+    // juga amb tenir en v[qttE] el valor que estem buscant
+    bool trobat = true;
+    int i = 0;
+    while (v[i] != v[qttE])
+        i++;
+    if (i == qttE)
+        trobat = false;
+
     return trobat;
 }
-int posicio(int v[],int qttE,int numCerca)
+int posicio(int v[], int qttE, int numCerca)
 {
-    int i=0;
-    int pos=-1;
+    int i = 0;
+    int pos = -1;
     // retorna -1 si el valor no esta
     // retorna la pos si el valor esta
 
-    while (i<qttE && pos==-1)
+    while (i < qttE && pos == -1)
     {
-        if (v[i]==numCerca) pos=i;
-        else i++;
+        if (v[i] == numCerca)
+            pos = i;
+        else
+            i++;
     }
     return pos;
 }
 
-void seleccioMin( int v[],int qttE)
+void seleccioMin(int v[], int qttE)
 {
     int min;
     int posMin;
 
-    for (int i = 0; i <= qttE-2; i ++)
+    for (int i = 0; i <= qttE - 2; i++)
     {
         min = v[i];
         posMin = i;
 
-        for (int j = i + 1; j < qttE; j ++)
+        for (int j = i + 1; j < qttE; j++)
         {
             if (v[j] < min)
             {
@@ -167,32 +174,32 @@ void seleccioMin( int v[],int qttE)
 
 void bombollaMin(int v[], int qttE)
 {
-    for (int pasada = 0; pasada <= qttE - 2; pasada ++)
+    for (int pasada = 0; pasada <= qttE - 2; pasada++)
     {
         for (int i = 0; i <= qttE - 2 - pasada; i++)
         {
             if (v[i] > v[i + 1])
             {
                 intercanviVariables(&v[i], &v[i + 1]);
-            }   
+            }
         }
     }
 }
 
 bool esLletra(char car)
 {
-    int i=0;
+    int i = 0;
     bool trobat = false;
     char lletres[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZÀÁÈÉÍÏÒÓÚÜÑÇabcdefghijklmnopqrstuvwxyzàáèéíïòóúüñç";
-    int longitud=strlen(lletres);
+    int longitud = strlen(lletres);
 
-    while (lletres[i]!=FICADENA && i<longitud && trobat==false)
+    while (lletres[i] != FICADENA && i < longitud && trobat == false)
     {
         if (lletres[i] == car)
         {
             trobat = true;
         }
-        else 
+        else
         {
             i++;
         }
@@ -200,66 +207,71 @@ bool esLletra(char car)
     return trobat;
 }
 
-
 bool esVocal(char car)
 {
-    int i=0;
+    int i = 0;
     bool trobat = false;
     char vocals[] = "AEIOUÀÁÈÉÍÏÒÓÚÜaeiouàáèéíïòóúü";
-    int longitud=strlen(vocals);
+    int longitud = strlen(vocals);
 
-    while (i<longitud && trobat==false && vocals[i]!=FICADENA)
+    while (i < longitud && trobat == false && vocals[i] != FICADENA)
     {
         if (vocals[i] == car)
         {
             trobat = true;
         }
-        else 
+        else
         {
             i++;
         }
     }
     return trobat;
 }
-void pintaCadena(char frase[],int longitud)
+void pintaCadena(char frase[], int longitud)
 {
-    int i=0;
-    while (i<longitud && frase[i]!=FICADENA)
+    int i = 0;
+    while (i < longitud && frase[i] != FICADENA)
     {
-        printf("%c",frase[i]);
+        printf("%c", frase[i]);
         i++;
     }
 }
 
 int calculLongitud(char frase[], int longitud)
 {
-    int i=0;
-    while (i<longitud && frase[i]!=FICADENA)
+    int i = 0;
+    while (i < longitud && frase[i] != FICADENA)
     {
         i++;
     }
     return i;
 }
-void entrarCadena(char frase[],int longitud)
+void entrarCadena(char frase[], int longitud)
 {
     fflush(stdin);
-	//llegeix longitud -1 caracters per deixar l'espai per a el FICADENA
-	fgets(frase,longitud,stdin); //stdin: teclat
-	fflush(stdin);
-	if (frase[strlen(frase)-1]==SALTLINIA) 
-	{
-		frase[strlen(frase)-1]=FICADENA;
-	}
+    // llegeix longitud -1 caracters per deixar l'espai per a el FICADENA
+    fgets(frase, longitud, stdin); // stdin: teclat
+    fflush(stdin);
+    if (frase[strlen(frase) - 1] == SALTLINIA)
+    {
+        frase[strlen(frase) - 1] = FICADENA;
+    }
 }
 
 void pintaMenu()
 {
-    char opcions[SORTIR][MAXCADENA]={"Alta estació","Mostrar estacións","Inserir ruta","Mostrar ruta","Mostrar rutes d'una estació","Mostrar KM entre dos estacións","Mostrar grafic de rutes","Sortir"};
+    char opcions[SORTIR][MAXCADENA] = {"Alta estació", "Mostrar estacións", "Inserir ruta", "Mostrar rutas", "Mostrar rutes d'una estació", "Mostrar KM entre dos estacións", "Sortir"};
     printf("\nMENÚ\n");
-    for (int i=0;i<SORTIR;i++)
+    for (int i = 0; i < SORTIR; i++)
     {
-        printf("\n%d:-%s",i+1,opcions[i]);
-        Sleep(150);
+        printf("\n%d:-%s", i + 1, opcions[i]);
+        // Sleep(150);
     }
+}
 
+void premCont()
+{
+    printf("\nPrem una tecla per continuar..");
+    getch();
+    cls();
 }

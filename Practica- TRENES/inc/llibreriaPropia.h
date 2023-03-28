@@ -24,5 +24,7 @@
     int calculLongitud(char [], int );
     void pintaCadena(char [],int );
     void entrarCadena(char [],int );
-    void pintaMenu();
+    void pintaMenu(void);
+    void premCont(void);
+
 #endif

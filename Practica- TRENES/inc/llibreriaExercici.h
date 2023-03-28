@@ -19,6 +19,13 @@ typedef struct
      XY coords;
 }ESTACIO;
 
+typedef struct
+{
+     char nom[MAXCADENA];
+     int index[MAXESTACIO];
+     int iqtt;
+}RUTA;
+
 enum OPCIOMENU
 {
      ALTAESTACIO = 1,
@@ -27,15 +34,35 @@ enum OPCIOMENU
      MOSTRARUTA,
      MOSTRARUTESESTACIO,
      KMENTREESTACIONS,
-     MOSTRARGRAFIC,
      SORTIR
 };
 
-
+void continuar (void);
 void altaEstacio (int *, ESTACIO []);
-void mostraEstacions(int *,ESTACIO []);
+void mostraEstacions(int ,ESTACIO []);
 bool validarNomE (char [], ESTACIO [], int *);
 bool validarCoords(int , int , ESTACIO [], int *);
+bool validarSinRuta(char []);
+void inserirRuta(ESTACIO [], RUTA [], int , int *);
+void separarNom(char [], char [], int *);
+void dividirEstacions(char [], RUTA [], int , ESTACIO [], int );
+bool allExists(char [][MAXESTACIO], ESTACIO [], int , int );
+bool noRepit(int, RUTA);
+bool repetirRuta(char [], RUTA [], int *);
+int cercaPosicioEstacio(char [], ESTACIO [], int );
+void mostrarRutas(int , RUTA [], ESTACIO []);
+void mostrarRutaEspecifica(RUTA [], int , ESTACIO [], int );
+void calculaDistanciaRutes(ESTACIO [], RUTA [], int );
+void printarEstacionsKm(ESTACIO [], RUTA );
+int posRuta(RUTA [], int , char []);
+
+
+
+
+
+
+
+
 
 
 
